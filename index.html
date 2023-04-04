@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Clima</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1>Clima</h1>
+    <form>
+      <label for="fecha">Selecciona una fecha:</label>
+      <input type="date" id="fecha">
+      <button type="button" id="enviar">Enviar</button>
+      <img id = "imagenClima" src="clima.png" width="150" height="150">
+    </form>
+    <div id="resultado"></div>
+    <script>
+      const enviarBtn = document.querySelector("#enviar");
+      const resultadoDiv = document.querySelector("#resultado");
+
+      enviarBtn.addEventListener("click", () => {
+        
+        const fecha = document.querySelector("#fecha").value;
+
+       
+        const randomNum = Math.random();
+        let imagen= document.getElementById("imagenClima");
+       
+        let clima;
+        if (randomNum < 0.33) {
+          clima = "Despejado";
+          imagen.src = "despejado.png"
+        } else if (randomNum < 0.66) {
+          clima = "Nublado";
+          imagen.src = "nublado.png"
+        } else {
+          clima = "Lluvioso";
+          imagen.src = "lluvioso.png"
+        }
+
+        
+        const temperatura = Math.floor(Math.random() * 26) + 5;
+
+        
+        resultadoDiv.innerHTML = `
+          <h2>Resultados para el ${fecha}</h2>
+          <p>Clima de la mañana: ${clima}</p>
+          <p>Temperatura: ${temperatura}°C</p>
+        `;
+      });
+    </script>
+  </body>
+</html>
